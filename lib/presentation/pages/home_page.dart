@@ -1,4 +1,5 @@
 import 'package:client_register_app/presentation/pages/register_page.dart';
+import 'package:client_register_app/presentation/pages/search_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -16,7 +17,11 @@ class HomePage extends StatelessWidget {
             PrimaryButton(
               mediaQuery: mediaQuery,
               text: 'Pesquisar',
-              onPressed: () {},
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const SearchPage(),
+                ),
+              ),
             ),
             PrimaryButton(
               mediaQuery: mediaQuery,
