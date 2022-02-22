@@ -52,3 +52,15 @@ Either<ValueFailure<String>, String> validateEmail(String input) {
     );
   }
 }
+
+Either<ValueFailure<String>, String> validateCPF(String input) {
+  if (RegExp(GlobalDomainConstants.cpfRegex).hasMatch(input)) {
+    return right(input);
+  } else {
+    return left(
+      ValueFailure.client(
+        ClientValueFailure.invalidCPF(failedValue: input),
+      ),
+    );
+  }
+}

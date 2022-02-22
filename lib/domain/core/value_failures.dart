@@ -19,4 +19,7 @@ class ClientValueFailure<T> with _$ClientValueFailure<T> {
   const factory ClientValueFailure.invalidEmail({
     required T failedValue,
   }) = _InvalidEmail<T>;
+  const factory ClientValueFailure.invalidCPF({
+    required T failedValue,
+  }) = _InvalidCPF<T>;
 }

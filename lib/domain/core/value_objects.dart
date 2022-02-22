@@ -30,9 +30,20 @@ class Email extends ValueObject<String> {
 
   factory Email.fromSafeString(String email) {
     return Email._(
-      validateStringNotEmpty(email)
-          .flatMap(validateStringIsANumber)
-          .flatMap(validateRegistrationCharacterRange),
+      validateStringNotEmpty(email).flatMap(validateEmail),
+    );
+  }
+
+  @override
+  final Either<ValueFailure<String>, String> value;
+}
+
+class CPF extends ValueObject<String> {
+  const CPF._(this.value);
+
+  factory CPF.fromSafeString(String cpf) {
+    return CPF._(
+      validateStringNotEmpty(cpf).flatMap(validateCPF),
     );
   }
 
