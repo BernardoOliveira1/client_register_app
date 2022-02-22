@@ -1,3 +1,4 @@
+import 'package:client_register_app/domain/constants/global_domain_constants.dart';
 import 'package:client_register_app/domain/core/value_failures.dart';
 import 'package:dartz/dartz.dart';
 
@@ -15,9 +16,9 @@ Either<ValueFailure<String>, String> validateStringNotEmpty(String input) {
   }
 }
 
-Either<ValueFailure<String>, String> validateNumberBelowRegistrationRangeLimit(
+Either<ValueFailure<String>, String> validateRegistrationCharacterRange(
     String input) {
-  if (int.parse(input) <= 99999) {
+  if (input.length == 5) {
     return right(input);
   } else {
     return left(
@@ -35,6 +36,18 @@ Either<ValueFailure<String>, String> validateStringIsANumber(String input) {
     return left(
       ValueFailure.client(
         ClientValueFailure.notANumber(failedValue: input),
+      ),
+    );
+  }
+}
+
+Either<ValueFailure<String>, String> validateEmail(String input) {
+  if (RegExp(GlobalDomainConstants.emailRegex).hasMatch(input)) {
+    return right(input);
+  } else {
+    return left(
+      ValueFailure.client(
+        ClientValueFailure.invalidEmail(failedValue: input),
       ),
     );
   }

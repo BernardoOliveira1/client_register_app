@@ -16,4 +16,7 @@ class ClientValueFailure<T> with _$ClientValueFailure<T> {
   const factory ClientValueFailure.notANumber({
     required T failedValue,
   }) = _NotANumber<T>;
+  const factory ClientValueFailure.invalidEmail({
+    required T failedValue,
+  }) = _InvalidEmail<T>;
 }

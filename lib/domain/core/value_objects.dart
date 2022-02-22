@@ -17,7 +17,22 @@ class RegistrationCode extends ValueObject<String> {
     return RegistrationCode._(
       validateStringNotEmpty(registrationCode)
           .flatMap(validateStringIsANumber)
-          .flatMap(validateNumberBelowRegistrationRangeLimit),
+          .flatMap(validateRegistrationCharacterRange),
+    );
+  }
+
+  @override
+  final Either<ValueFailure<String>, String> value;
+}
+
+class Email extends ValueObject<String> {
+  const Email._(this.value);
+
+  factory Email.fromSafeString(String email) {
+    return Email._(
+      validateStringNotEmpty(email)
+          .flatMap(validateStringIsANumber)
+          .flatMap(validateRegistrationCharacterRange),
     );
   }
 

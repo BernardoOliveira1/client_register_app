@@ -42,6 +42,12 @@ class _$ClientValueFailureTearOff {
       failedValue: failedValue,
     );
   }
+
+  _InvalidEmail<T> invalidEmail<T>({required T failedValue}) {
+    return _InvalidEmail<T>(
+      failedValue: failedValue,
+    );
+  }
 }
 
 /// @nodoc
@@ -57,6 +63,7 @@ mixin _$ClientValueFailure<T> {
     required TResult Function(T failedValue) emptyString,
     required TResult Function(T failedValue) outOfRegistrationRangeLimit,
     required TResult Function(T failedValue) notANumber,
+    required TResult Function(T failedValue) invalidEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +72,7 @@ mixin _$ClientValueFailure<T> {
     TResult Function(T failedValue)? emptyString,
     TResult Function(T failedValue)? outOfRegistrationRangeLimit,
     TResult Function(T failedValue)? notANumber,
+    TResult Function(T failedValue)? invalidEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -73,6 +81,7 @@ mixin _$ClientValueFailure<T> {
     TResult Function(T failedValue)? emptyString,
     TResult Function(T failedValue)? outOfRegistrationRangeLimit,
     TResult Function(T failedValue)? notANumber,
+    TResult Function(T failedValue)? invalidEmail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -83,6 +92,7 @@ mixin _$ClientValueFailure<T> {
     required TResult Function(_OutOfRegistrationRangeLimit<T> value)
         outOfRegistrationRangeLimit,
     required TResult Function(_NotANumber<T> value) notANumber,
+    required TResult Function(_InvalidEmail<T> value) invalidEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -92,6 +102,7 @@ mixin _$ClientValueFailure<T> {
     TResult Function(_OutOfRegistrationRangeLimit<T> value)?
         outOfRegistrationRangeLimit,
     TResult Function(_NotANumber<T> value)? notANumber,
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -101,6 +112,7 @@ mixin _$ClientValueFailure<T> {
     TResult Function(_OutOfRegistrationRangeLimit<T> value)?
         outOfRegistrationRangeLimit,
     TResult Function(_NotANumber<T> value)? notANumber,
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -212,6 +224,7 @@ class _$_ClientNotFound<T> implements _ClientNotFound<T> {
     required TResult Function(T failedValue) emptyString,
     required TResult Function(T failedValue) outOfRegistrationRangeLimit,
     required TResult Function(T failedValue) notANumber,
+    required TResult Function(T failedValue) invalidEmail,
   }) {
     return clientNotFound(failedValue);
   }
@@ -223,6 +236,7 @@ class _$_ClientNotFound<T> implements _ClientNotFound<T> {
     TResult Function(T failedValue)? emptyString,
     TResult Function(T failedValue)? outOfRegistrationRangeLimit,
     TResult Function(T failedValue)? notANumber,
+    TResult Function(T failedValue)? invalidEmail,
   }) {
     return clientNotFound?.call(failedValue);
   }
@@ -234,6 +248,7 @@ class _$_ClientNotFound<T> implements _ClientNotFound<T> {
     TResult Function(T failedValue)? emptyString,
     TResult Function(T failedValue)? outOfRegistrationRangeLimit,
     TResult Function(T failedValue)? notANumber,
+    TResult Function(T failedValue)? invalidEmail,
     required TResult orElse(),
   }) {
     if (clientNotFound != null) {
@@ -250,6 +265,7 @@ class _$_ClientNotFound<T> implements _ClientNotFound<T> {
     required TResult Function(_OutOfRegistrationRangeLimit<T> value)
         outOfRegistrationRangeLimit,
     required TResult Function(_NotANumber<T> value) notANumber,
+    required TResult Function(_InvalidEmail<T> value) invalidEmail,
   }) {
     return clientNotFound(this);
   }
@@ -262,6 +278,7 @@ class _$_ClientNotFound<T> implements _ClientNotFound<T> {
     TResult Function(_OutOfRegistrationRangeLimit<T> value)?
         outOfRegistrationRangeLimit,
     TResult Function(_NotANumber<T> value)? notANumber,
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
   }) {
     return clientNotFound?.call(this);
   }
@@ -274,6 +291,7 @@ class _$_ClientNotFound<T> implements _ClientNotFound<T> {
     TResult Function(_OutOfRegistrationRangeLimit<T> value)?
         outOfRegistrationRangeLimit,
     TResult Function(_NotANumber<T> value)? notANumber,
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
     required TResult orElse(),
   }) {
     if (clientNotFound != null) {
@@ -367,6 +385,7 @@ class _$_EmptyString<T> implements _EmptyString<T> {
     required TResult Function(T failedValue) emptyString,
     required TResult Function(T failedValue) outOfRegistrationRangeLimit,
     required TResult Function(T failedValue) notANumber,
+    required TResult Function(T failedValue) invalidEmail,
   }) {
     return emptyString(failedValue);
   }
@@ -378,6 +397,7 @@ class _$_EmptyString<T> implements _EmptyString<T> {
     TResult Function(T failedValue)? emptyString,
     TResult Function(T failedValue)? outOfRegistrationRangeLimit,
     TResult Function(T failedValue)? notANumber,
+    TResult Function(T failedValue)? invalidEmail,
   }) {
     return emptyString?.call(failedValue);
   }
@@ -389,6 +409,7 @@ class _$_EmptyString<T> implements _EmptyString<T> {
     TResult Function(T failedValue)? emptyString,
     TResult Function(T failedValue)? outOfRegistrationRangeLimit,
     TResult Function(T failedValue)? notANumber,
+    TResult Function(T failedValue)? invalidEmail,
     required TResult orElse(),
   }) {
     if (emptyString != null) {
@@ -405,6 +426,7 @@ class _$_EmptyString<T> implements _EmptyString<T> {
     required TResult Function(_OutOfRegistrationRangeLimit<T> value)
         outOfRegistrationRangeLimit,
     required TResult Function(_NotANumber<T> value) notANumber,
+    required TResult Function(_InvalidEmail<T> value) invalidEmail,
   }) {
     return emptyString(this);
   }
@@ -417,6 +439,7 @@ class _$_EmptyString<T> implements _EmptyString<T> {
     TResult Function(_OutOfRegistrationRangeLimit<T> value)?
         outOfRegistrationRangeLimit,
     TResult Function(_NotANumber<T> value)? notANumber,
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
   }) {
     return emptyString?.call(this);
   }
@@ -429,6 +452,7 @@ class _$_EmptyString<T> implements _EmptyString<T> {
     TResult Function(_OutOfRegistrationRangeLimit<T> value)?
         outOfRegistrationRangeLimit,
     TResult Function(_NotANumber<T> value)? notANumber,
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
     required TResult orElse(),
   }) {
     if (emptyString != null) {
@@ -526,6 +550,7 @@ class _$_OutOfRegistrationRangeLimit<T>
     required TResult Function(T failedValue) emptyString,
     required TResult Function(T failedValue) outOfRegistrationRangeLimit,
     required TResult Function(T failedValue) notANumber,
+    required TResult Function(T failedValue) invalidEmail,
   }) {
     return outOfRegistrationRangeLimit(failedValue);
   }
@@ -537,6 +562,7 @@ class _$_OutOfRegistrationRangeLimit<T>
     TResult Function(T failedValue)? emptyString,
     TResult Function(T failedValue)? outOfRegistrationRangeLimit,
     TResult Function(T failedValue)? notANumber,
+    TResult Function(T failedValue)? invalidEmail,
   }) {
     return outOfRegistrationRangeLimit?.call(failedValue);
   }
@@ -548,6 +574,7 @@ class _$_OutOfRegistrationRangeLimit<T>
     TResult Function(T failedValue)? emptyString,
     TResult Function(T failedValue)? outOfRegistrationRangeLimit,
     TResult Function(T failedValue)? notANumber,
+    TResult Function(T failedValue)? invalidEmail,
     required TResult orElse(),
   }) {
     if (outOfRegistrationRangeLimit != null) {
@@ -564,6 +591,7 @@ class _$_OutOfRegistrationRangeLimit<T>
     required TResult Function(_OutOfRegistrationRangeLimit<T> value)
         outOfRegistrationRangeLimit,
     required TResult Function(_NotANumber<T> value) notANumber,
+    required TResult Function(_InvalidEmail<T> value) invalidEmail,
   }) {
     return outOfRegistrationRangeLimit(this);
   }
@@ -576,6 +604,7 @@ class _$_OutOfRegistrationRangeLimit<T>
     TResult Function(_OutOfRegistrationRangeLimit<T> value)?
         outOfRegistrationRangeLimit,
     TResult Function(_NotANumber<T> value)? notANumber,
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
   }) {
     return outOfRegistrationRangeLimit?.call(this);
   }
@@ -588,6 +617,7 @@ class _$_OutOfRegistrationRangeLimit<T>
     TResult Function(_OutOfRegistrationRangeLimit<T> value)?
         outOfRegistrationRangeLimit,
     TResult Function(_NotANumber<T> value)? notANumber,
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
     required TResult orElse(),
   }) {
     if (outOfRegistrationRangeLimit != null) {
@@ -682,6 +712,7 @@ class _$_NotANumber<T> implements _NotANumber<T> {
     required TResult Function(T failedValue) emptyString,
     required TResult Function(T failedValue) outOfRegistrationRangeLimit,
     required TResult Function(T failedValue) notANumber,
+    required TResult Function(T failedValue) invalidEmail,
   }) {
     return notANumber(failedValue);
   }
@@ -693,6 +724,7 @@ class _$_NotANumber<T> implements _NotANumber<T> {
     TResult Function(T failedValue)? emptyString,
     TResult Function(T failedValue)? outOfRegistrationRangeLimit,
     TResult Function(T failedValue)? notANumber,
+    TResult Function(T failedValue)? invalidEmail,
   }) {
     return notANumber?.call(failedValue);
   }
@@ -704,6 +736,7 @@ class _$_NotANumber<T> implements _NotANumber<T> {
     TResult Function(T failedValue)? emptyString,
     TResult Function(T failedValue)? outOfRegistrationRangeLimit,
     TResult Function(T failedValue)? notANumber,
+    TResult Function(T failedValue)? invalidEmail,
     required TResult orElse(),
   }) {
     if (notANumber != null) {
@@ -720,6 +753,7 @@ class _$_NotANumber<T> implements _NotANumber<T> {
     required TResult Function(_OutOfRegistrationRangeLimit<T> value)
         outOfRegistrationRangeLimit,
     required TResult Function(_NotANumber<T> value) notANumber,
+    required TResult Function(_InvalidEmail<T> value) invalidEmail,
   }) {
     return notANumber(this);
   }
@@ -732,6 +766,7 @@ class _$_NotANumber<T> implements _NotANumber<T> {
     TResult Function(_OutOfRegistrationRangeLimit<T> value)?
         outOfRegistrationRangeLimit,
     TResult Function(_NotANumber<T> value)? notANumber,
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
   }) {
     return notANumber?.call(this);
   }
@@ -744,6 +779,7 @@ class _$_NotANumber<T> implements _NotANumber<T> {
     TResult Function(_OutOfRegistrationRangeLimit<T> value)?
         outOfRegistrationRangeLimit,
     TResult Function(_NotANumber<T> value)? notANumber,
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
     required TResult orElse(),
   }) {
     if (notANumber != null) {
@@ -761,5 +797,165 @@ abstract class _NotANumber<T> implements ClientValueFailure<T> {
   @override
   @JsonKey(ignore: true)
   _$NotANumberCopyWith<T, _NotANumber<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$InvalidEmailCopyWith<T, $Res>
+    implements $ClientValueFailureCopyWith<T, $Res> {
+  factory _$InvalidEmailCopyWith(
+          _InvalidEmail<T> value, $Res Function(_InvalidEmail<T>) then) =
+      __$InvalidEmailCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class __$InvalidEmailCopyWithImpl<T, $Res>
+    extends _$ClientValueFailureCopyWithImpl<T, $Res>
+    implements _$InvalidEmailCopyWith<T, $Res> {
+  __$InvalidEmailCopyWithImpl(
+      _InvalidEmail<T> _value, $Res Function(_InvalidEmail<T>) _then)
+      : super(_value, (v) => _then(v as _InvalidEmail<T>));
+
+  @override
+  _InvalidEmail<T> get _value => super._value as _InvalidEmail<T>;
+
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+  }) {
+    return _then(_InvalidEmail<T>(
+      failedValue: failedValue == freezed
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_InvalidEmail<T> implements _InvalidEmail<T> {
+  const _$_InvalidEmail({required this.failedValue});
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString() {
+    return 'ClientValueFailure<$T>.invalidEmail(failedValue: $failedValue)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _InvalidEmail<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failedValue));
+
+  @JsonKey(ignore: true)
+  @override
+  _$InvalidEmailCopyWith<T, _InvalidEmail<T>> get copyWith =>
+      __$InvalidEmailCopyWithImpl<T, _InvalidEmail<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue) clientNotFound,
+    required TResult Function(T failedValue) emptyString,
+    required TResult Function(T failedValue) outOfRegistrationRangeLimit,
+    required TResult Function(T failedValue) notANumber,
+    required TResult Function(T failedValue) invalidEmail,
+  }) {
+    return invalidEmail(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T failedValue)? clientNotFound,
+    TResult Function(T failedValue)? emptyString,
+    TResult Function(T failedValue)? outOfRegistrationRangeLimit,
+    TResult Function(T failedValue)? notANumber,
+    TResult Function(T failedValue)? invalidEmail,
+  }) {
+    return invalidEmail?.call(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue)? clientNotFound,
+    TResult Function(T failedValue)? emptyString,
+    TResult Function(T failedValue)? outOfRegistrationRangeLimit,
+    TResult Function(T failedValue)? notANumber,
+    TResult Function(T failedValue)? invalidEmail,
+    required TResult orElse(),
+  }) {
+    if (invalidEmail != null) {
+      return invalidEmail(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClientNotFound<T> value) clientNotFound,
+    required TResult Function(_EmptyString<T> value) emptyString,
+    required TResult Function(_OutOfRegistrationRangeLimit<T> value)
+        outOfRegistrationRangeLimit,
+    required TResult Function(_NotANumber<T> value) notANumber,
+    required TResult Function(_InvalidEmail<T> value) invalidEmail,
+  }) {
+    return invalidEmail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ClientNotFound<T> value)? clientNotFound,
+    TResult Function(_EmptyString<T> value)? emptyString,
+    TResult Function(_OutOfRegistrationRangeLimit<T> value)?
+        outOfRegistrationRangeLimit,
+    TResult Function(_NotANumber<T> value)? notANumber,
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
+  }) {
+    return invalidEmail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClientNotFound<T> value)? clientNotFound,
+    TResult Function(_EmptyString<T> value)? emptyString,
+    TResult Function(_OutOfRegistrationRangeLimit<T> value)?
+        outOfRegistrationRangeLimit,
+    TResult Function(_NotANumber<T> value)? notANumber,
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
+    required TResult orElse(),
+  }) {
+    if (invalidEmail != null) {
+      return invalidEmail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InvalidEmail<T> implements ClientValueFailure<T> {
+  const factory _InvalidEmail({required T failedValue}) = _$_InvalidEmail<T>;
+
+  @override
+  T get failedValue;
+  @override
+  @JsonKey(ignore: true)
+  _$InvalidEmailCopyWith<T, _InvalidEmail<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
