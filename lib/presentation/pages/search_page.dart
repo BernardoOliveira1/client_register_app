@@ -1,5 +1,7 @@
+import 'package:client_register_app/presentation/widgets/edition_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -21,7 +23,7 @@ class SearchPage extends StatelessWidget {
               height: 20,
             ),
             SizedBox(
-              height: 47,
+              height: 50,
               width: mediaQuery.size.width * (8 / 9),
               child: const SearchField(),
             ),
@@ -188,7 +190,11 @@ class ClientDataTable extends StatelessWidget {
             rows: listOfColumns
                 .map(
                   ((element) => DataRow(
-                        onLongPress: () {},
+                        onLongPress: () async {
+                          await Get.dialog(
+                            const EditionDialog(),
+                          );
+                        },
                         cells: <DataCell>[
                           DataCell(Text(
                             element["Matrícula"]!,

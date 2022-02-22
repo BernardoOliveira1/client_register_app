@@ -1,6 +1,6 @@
 import 'package:client_register_app/presentation/pages/register_page.dart';
 import 'package:client_register_app/presentation/pages/search_page.dart';
-import 'package:client_register_app/presentation/widgets/primary_button.dart';
+import 'package:client_register_app/presentation/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
