@@ -1,5 +1,6 @@
 import 'package:client_register_app/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const RegisterApp());
@@ -10,7 +11,7 @@ class RegisterApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Client Register App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
