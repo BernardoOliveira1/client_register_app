@@ -29,6 +29,19 @@ class _$ClientValueFailureTearOff {
       failedValue: failedValue,
     );
   }
+
+  _OutOfRegistrationRangeLimit<T> outOfRegistrationRangeLimit<T>(
+      {required T failedValue}) {
+    return _OutOfRegistrationRangeLimit<T>(
+      failedValue: failedValue,
+    );
+  }
+
+  _NotANumber<T> notANumber<T>({required T failedValue}) {
+    return _NotANumber<T>(
+      failedValue: failedValue,
+    );
+  }
 }
 
 /// @nodoc
@@ -42,18 +55,24 @@ mixin _$ClientValueFailure<T> {
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) clientNotFound,
     required TResult Function(T failedValue) emptyString,
+    required TResult Function(T failedValue) outOfRegistrationRangeLimit,
+    required TResult Function(T failedValue) notANumber,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(T failedValue)? clientNotFound,
     TResult Function(T failedValue)? emptyString,
+    TResult Function(T failedValue)? outOfRegistrationRangeLimit,
+    TResult Function(T failedValue)? notANumber,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? clientNotFound,
     TResult Function(T failedValue)? emptyString,
+    TResult Function(T failedValue)? outOfRegistrationRangeLimit,
+    TResult Function(T failedValue)? notANumber,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,18 +80,27 @@ mixin _$ClientValueFailure<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientNotFound<T> value) clientNotFound,
     required TResult Function(_EmptyString<T> value) emptyString,
+    required TResult Function(_OutOfRegistrationRangeLimit<T> value)
+        outOfRegistrationRangeLimit,
+    required TResult Function(_NotANumber<T> value) notANumber,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_ClientNotFound<T> value)? clientNotFound,
     TResult Function(_EmptyString<T> value)? emptyString,
+    TResult Function(_OutOfRegistrationRangeLimit<T> value)?
+        outOfRegistrationRangeLimit,
+    TResult Function(_NotANumber<T> value)? notANumber,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientNotFound<T> value)? clientNotFound,
     TResult Function(_EmptyString<T> value)? emptyString,
+    TResult Function(_OutOfRegistrationRangeLimit<T> value)?
+        outOfRegistrationRangeLimit,
+    TResult Function(_NotANumber<T> value)? notANumber,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -182,6 +210,8 @@ class _$_ClientNotFound<T> implements _ClientNotFound<T> {
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) clientNotFound,
     required TResult Function(T failedValue) emptyString,
+    required TResult Function(T failedValue) outOfRegistrationRangeLimit,
+    required TResult Function(T failedValue) notANumber,
   }) {
     return clientNotFound(failedValue);
   }
@@ -191,6 +221,8 @@ class _$_ClientNotFound<T> implements _ClientNotFound<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(T failedValue)? clientNotFound,
     TResult Function(T failedValue)? emptyString,
+    TResult Function(T failedValue)? outOfRegistrationRangeLimit,
+    TResult Function(T failedValue)? notANumber,
   }) {
     return clientNotFound?.call(failedValue);
   }
@@ -200,6 +232,8 @@ class _$_ClientNotFound<T> implements _ClientNotFound<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? clientNotFound,
     TResult Function(T failedValue)? emptyString,
+    TResult Function(T failedValue)? outOfRegistrationRangeLimit,
+    TResult Function(T failedValue)? notANumber,
     required TResult orElse(),
   }) {
     if (clientNotFound != null) {
@@ -213,6 +247,9 @@ class _$_ClientNotFound<T> implements _ClientNotFound<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientNotFound<T> value) clientNotFound,
     required TResult Function(_EmptyString<T> value) emptyString,
+    required TResult Function(_OutOfRegistrationRangeLimit<T> value)
+        outOfRegistrationRangeLimit,
+    required TResult Function(_NotANumber<T> value) notANumber,
   }) {
     return clientNotFound(this);
   }
@@ -222,6 +259,9 @@ class _$_ClientNotFound<T> implements _ClientNotFound<T> {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_ClientNotFound<T> value)? clientNotFound,
     TResult Function(_EmptyString<T> value)? emptyString,
+    TResult Function(_OutOfRegistrationRangeLimit<T> value)?
+        outOfRegistrationRangeLimit,
+    TResult Function(_NotANumber<T> value)? notANumber,
   }) {
     return clientNotFound?.call(this);
   }
@@ -231,6 +271,9 @@ class _$_ClientNotFound<T> implements _ClientNotFound<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientNotFound<T> value)? clientNotFound,
     TResult Function(_EmptyString<T> value)? emptyString,
+    TResult Function(_OutOfRegistrationRangeLimit<T> value)?
+        outOfRegistrationRangeLimit,
+    TResult Function(_NotANumber<T> value)? notANumber,
     required TResult orElse(),
   }) {
     if (clientNotFound != null) {
@@ -322,6 +365,8 @@ class _$_EmptyString<T> implements _EmptyString<T> {
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) clientNotFound,
     required TResult Function(T failedValue) emptyString,
+    required TResult Function(T failedValue) outOfRegistrationRangeLimit,
+    required TResult Function(T failedValue) notANumber,
   }) {
     return emptyString(failedValue);
   }
@@ -331,6 +376,8 @@ class _$_EmptyString<T> implements _EmptyString<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(T failedValue)? clientNotFound,
     TResult Function(T failedValue)? emptyString,
+    TResult Function(T failedValue)? outOfRegistrationRangeLimit,
+    TResult Function(T failedValue)? notANumber,
   }) {
     return emptyString?.call(failedValue);
   }
@@ -340,6 +387,8 @@ class _$_EmptyString<T> implements _EmptyString<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? clientNotFound,
     TResult Function(T failedValue)? emptyString,
+    TResult Function(T failedValue)? outOfRegistrationRangeLimit,
+    TResult Function(T failedValue)? notANumber,
     required TResult orElse(),
   }) {
     if (emptyString != null) {
@@ -353,6 +402,9 @@ class _$_EmptyString<T> implements _EmptyString<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientNotFound<T> value) clientNotFound,
     required TResult Function(_EmptyString<T> value) emptyString,
+    required TResult Function(_OutOfRegistrationRangeLimit<T> value)
+        outOfRegistrationRangeLimit,
+    required TResult Function(_NotANumber<T> value) notANumber,
   }) {
     return emptyString(this);
   }
@@ -362,6 +414,9 @@ class _$_EmptyString<T> implements _EmptyString<T> {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_ClientNotFound<T> value)? clientNotFound,
     TResult Function(_EmptyString<T> value)? emptyString,
+    TResult Function(_OutOfRegistrationRangeLimit<T> value)?
+        outOfRegistrationRangeLimit,
+    TResult Function(_NotANumber<T> value)? notANumber,
   }) {
     return emptyString?.call(this);
   }
@@ -371,6 +426,9 @@ class _$_EmptyString<T> implements _EmptyString<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientNotFound<T> value)? clientNotFound,
     TResult Function(_EmptyString<T> value)? emptyString,
+    TResult Function(_OutOfRegistrationRangeLimit<T> value)?
+        outOfRegistrationRangeLimit,
+    TResult Function(_NotANumber<T> value)? notANumber,
     required TResult orElse(),
   }) {
     if (emptyString != null) {
@@ -388,5 +446,320 @@ abstract class _EmptyString<T> implements ClientValueFailure<T> {
   @override
   @JsonKey(ignore: true)
   _$EmptyStringCopyWith<T, _EmptyString<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$OutOfRegistrationRangeLimitCopyWith<T, $Res>
+    implements $ClientValueFailureCopyWith<T, $Res> {
+  factory _$OutOfRegistrationRangeLimitCopyWith(
+          _OutOfRegistrationRangeLimit<T> value,
+          $Res Function(_OutOfRegistrationRangeLimit<T>) then) =
+      __$OutOfRegistrationRangeLimitCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class __$OutOfRegistrationRangeLimitCopyWithImpl<T, $Res>
+    extends _$ClientValueFailureCopyWithImpl<T, $Res>
+    implements _$OutOfRegistrationRangeLimitCopyWith<T, $Res> {
+  __$OutOfRegistrationRangeLimitCopyWithImpl(
+      _OutOfRegistrationRangeLimit<T> _value,
+      $Res Function(_OutOfRegistrationRangeLimit<T>) _then)
+      : super(_value, (v) => _then(v as _OutOfRegistrationRangeLimit<T>));
+
+  @override
+  _OutOfRegistrationRangeLimit<T> get _value =>
+      super._value as _OutOfRegistrationRangeLimit<T>;
+
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+  }) {
+    return _then(_OutOfRegistrationRangeLimit<T>(
+      failedValue: failedValue == freezed
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_OutOfRegistrationRangeLimit<T>
+    implements _OutOfRegistrationRangeLimit<T> {
+  const _$_OutOfRegistrationRangeLimit({required this.failedValue});
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString() {
+    return 'ClientValueFailure<$T>.outOfRegistrationRangeLimit(failedValue: $failedValue)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _OutOfRegistrationRangeLimit<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failedValue));
+
+  @JsonKey(ignore: true)
+  @override
+  _$OutOfRegistrationRangeLimitCopyWith<T, _OutOfRegistrationRangeLimit<T>>
+      get copyWith => __$OutOfRegistrationRangeLimitCopyWithImpl<T,
+          _OutOfRegistrationRangeLimit<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue) clientNotFound,
+    required TResult Function(T failedValue) emptyString,
+    required TResult Function(T failedValue) outOfRegistrationRangeLimit,
+    required TResult Function(T failedValue) notANumber,
+  }) {
+    return outOfRegistrationRangeLimit(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T failedValue)? clientNotFound,
+    TResult Function(T failedValue)? emptyString,
+    TResult Function(T failedValue)? outOfRegistrationRangeLimit,
+    TResult Function(T failedValue)? notANumber,
+  }) {
+    return outOfRegistrationRangeLimit?.call(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue)? clientNotFound,
+    TResult Function(T failedValue)? emptyString,
+    TResult Function(T failedValue)? outOfRegistrationRangeLimit,
+    TResult Function(T failedValue)? notANumber,
+    required TResult orElse(),
+  }) {
+    if (outOfRegistrationRangeLimit != null) {
+      return outOfRegistrationRangeLimit(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClientNotFound<T> value) clientNotFound,
+    required TResult Function(_EmptyString<T> value) emptyString,
+    required TResult Function(_OutOfRegistrationRangeLimit<T> value)
+        outOfRegistrationRangeLimit,
+    required TResult Function(_NotANumber<T> value) notANumber,
+  }) {
+    return outOfRegistrationRangeLimit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ClientNotFound<T> value)? clientNotFound,
+    TResult Function(_EmptyString<T> value)? emptyString,
+    TResult Function(_OutOfRegistrationRangeLimit<T> value)?
+        outOfRegistrationRangeLimit,
+    TResult Function(_NotANumber<T> value)? notANumber,
+  }) {
+    return outOfRegistrationRangeLimit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClientNotFound<T> value)? clientNotFound,
+    TResult Function(_EmptyString<T> value)? emptyString,
+    TResult Function(_OutOfRegistrationRangeLimit<T> value)?
+        outOfRegistrationRangeLimit,
+    TResult Function(_NotANumber<T> value)? notANumber,
+    required TResult orElse(),
+  }) {
+    if (outOfRegistrationRangeLimit != null) {
+      return outOfRegistrationRangeLimit(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OutOfRegistrationRangeLimit<T>
+    implements ClientValueFailure<T> {
+  const factory _OutOfRegistrationRangeLimit({required T failedValue}) =
+      _$_OutOfRegistrationRangeLimit<T>;
+
+  @override
+  T get failedValue;
+  @override
+  @JsonKey(ignore: true)
+  _$OutOfRegistrationRangeLimitCopyWith<T, _OutOfRegistrationRangeLimit<T>>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$NotANumberCopyWith<T, $Res>
+    implements $ClientValueFailureCopyWith<T, $Res> {
+  factory _$NotANumberCopyWith(
+          _NotANumber<T> value, $Res Function(_NotANumber<T>) then) =
+      __$NotANumberCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class __$NotANumberCopyWithImpl<T, $Res>
+    extends _$ClientValueFailureCopyWithImpl<T, $Res>
+    implements _$NotANumberCopyWith<T, $Res> {
+  __$NotANumberCopyWithImpl(
+      _NotANumber<T> _value, $Res Function(_NotANumber<T>) _then)
+      : super(_value, (v) => _then(v as _NotANumber<T>));
+
+  @override
+  _NotANumber<T> get _value => super._value as _NotANumber<T>;
+
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+  }) {
+    return _then(_NotANumber<T>(
+      failedValue: failedValue == freezed
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_NotANumber<T> implements _NotANumber<T> {
+  const _$_NotANumber({required this.failedValue});
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString() {
+    return 'ClientValueFailure<$T>.notANumber(failedValue: $failedValue)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _NotANumber<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failedValue));
+
+  @JsonKey(ignore: true)
+  @override
+  _$NotANumberCopyWith<T, _NotANumber<T>> get copyWith =>
+      __$NotANumberCopyWithImpl<T, _NotANumber<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue) clientNotFound,
+    required TResult Function(T failedValue) emptyString,
+    required TResult Function(T failedValue) outOfRegistrationRangeLimit,
+    required TResult Function(T failedValue) notANumber,
+  }) {
+    return notANumber(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T failedValue)? clientNotFound,
+    TResult Function(T failedValue)? emptyString,
+    TResult Function(T failedValue)? outOfRegistrationRangeLimit,
+    TResult Function(T failedValue)? notANumber,
+  }) {
+    return notANumber?.call(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue)? clientNotFound,
+    TResult Function(T failedValue)? emptyString,
+    TResult Function(T failedValue)? outOfRegistrationRangeLimit,
+    TResult Function(T failedValue)? notANumber,
+    required TResult orElse(),
+  }) {
+    if (notANumber != null) {
+      return notANumber(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClientNotFound<T> value) clientNotFound,
+    required TResult Function(_EmptyString<T> value) emptyString,
+    required TResult Function(_OutOfRegistrationRangeLimit<T> value)
+        outOfRegistrationRangeLimit,
+    required TResult Function(_NotANumber<T> value) notANumber,
+  }) {
+    return notANumber(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ClientNotFound<T> value)? clientNotFound,
+    TResult Function(_EmptyString<T> value)? emptyString,
+    TResult Function(_OutOfRegistrationRangeLimit<T> value)?
+        outOfRegistrationRangeLimit,
+    TResult Function(_NotANumber<T> value)? notANumber,
+  }) {
+    return notANumber?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClientNotFound<T> value)? clientNotFound,
+    TResult Function(_EmptyString<T> value)? emptyString,
+    TResult Function(_OutOfRegistrationRangeLimit<T> value)?
+        outOfRegistrationRangeLimit,
+    TResult Function(_NotANumber<T> value)? notANumber,
+    required TResult orElse(),
+  }) {
+    if (notANumber != null) {
+      return notANumber(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NotANumber<T> implements ClientValueFailure<T> {
+  const factory _NotANumber({required T failedValue}) = _$_NotANumber<T>;
+
+  @override
+  T get failedValue;
+  @override
+  @JsonKey(ignore: true)
+  _$NotANumberCopyWith<T, _NotANumber<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

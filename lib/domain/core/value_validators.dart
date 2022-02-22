@@ -14,3 +14,28 @@ Either<ValueFailure<String>, String> validateStringNotEmpty(String input) {
     );
   }
 }
+
+Either<ValueFailure<String>, String> validateNumberBelowRegistrationRangeLimit(
+    String input) {
+  if (int.parse(input) <= 99999) {
+    return right(input);
+  } else {
+    return left(
+      ValueFailure.client(
+        ClientValueFailure.outOfRegistrationRangeLimit(failedValue: input),
+      ),
+    );
+  }
+}
+
+Either<ValueFailure<String>, String> validateStringIsANumber(String input) {
+  if (int.tryParse(input) != null) {
+    return right(input);
+  } else {
+    return left(
+      ValueFailure.client(
+        ClientValueFailure.notANumber(failedValue: input),
+      ),
+    );
+  }
+}
