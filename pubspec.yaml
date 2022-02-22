@@ -35,6 +35,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_hooks: ^0.18.2+1
   get: ^4.6.1
+  freezed: ^1.1.1
+  freezed_annotation: ^1.1.0
+  build_runner: ^2.1.7
+  dartz: ^0.10.1
 
 dev_dependencies:
   flutter_test:
