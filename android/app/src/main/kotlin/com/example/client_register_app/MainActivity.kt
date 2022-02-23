@@ -1,4 +1,4 @@
-package com.example.client_register_app
+package com.example.client.register.app
 
 import io.flutter.embedding.android.FlutterActivity
 
