@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
-import 'error.dart';
+import 'value_object_error.dart';
 import 'core_value_failure.dart';
 
 @immutable
