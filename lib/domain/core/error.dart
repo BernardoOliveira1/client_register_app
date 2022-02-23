@@ -1,14 +1,14 @@
-import 'core_value_failure.dart';
+import 'failure.dart';
 
-class UnexpectedValueError extends Error {
-  UnexpectedValueError(this.valueFailure);
+class UnexpectedClientError extends Error {
+  UnexpectedClientError(this.clientFailure);
 
-  final ValueFailure valueFailure;
+  final ClientFailure clientFailure;
 
   @override
   String toString() {
     const explanation =
         'Encountered a Failure at an unrecoverable point. Terminating.';
-    return Error.safeToString('$explanation Failure was: $valueFailure');
+    return Error.safeToString('$explanation Failure was: $clientFailure');
   }
 }
