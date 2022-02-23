@@ -1,27 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 class RegisterTextField extends HookWidget {
   const RegisterTextField(
       {required this.labelText,
+      required this.controller,
       required this.hintText,
       required this.maxLength,
+      required this.onChanged,
+      required this.validator,
+      required this.onFieldSubmitted,
+      required this.autoValidate,
+      required this.keyboardType,
+      this.inputFormatters,
       Key? key})
       : super(key: key);
 
   final String labelText;
   final String hintText;
   final int maxLength;
+  final void Function(String)? onChanged;
+  final String? Function(String?)? validator;
+  final void Function(String)? onFieldSubmitted;
+  final TextEditingController controller;
+  final AutovalidateMode autoValidate;
+  final List<TextInputFormatter>? inputFormatters;
+  final TextInputType? keyboardType;
 
   @override
   Widget build(BuildContext context) {
-    final _nameFocusNode = useFocusNode();
-
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
         controller: null,
-        focusNode: _nameFocusNode,
+        focusNode: null,
+        inputFormatters: inputFormatters,
+        autovalidateMode: autoValidate,
+        keyboardType: keyboardType,
         textCapitalization: TextCapitalization.sentences,
         style: const TextStyle(
           fontSize: 18,
@@ -51,9 +67,15 @@ class RegisterTextField extends HookWidget {
           ),
         ),
         maxLength: maxLength,
-        onChanged: (value) {},
-        onFieldSubmitted: (_) {},
-        validator: (_) {},
+        onChanged: (value) {
+          onChanged!(value);
+        },
+        onFieldSubmitted: (_) {
+          onFieldSubmitted;
+        },
+        validator: (_) {
+          validator!(_);
+        },
       ),
     );
   }

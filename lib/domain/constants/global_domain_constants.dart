@@ -10,5 +10,5 @@ class GlobalDomainConstants {
   /// Valid CPF like 123.456.789-00 or 12345678900
 
   /// **Invalid examples:** 1234567890,123456789000
-  static const String cpfRegex = r"^(^\d{3}\.\d{3}\.\d{3}\-\d{2}$)";
+  static const String cpfRegex = r"^\d{3}[.-]?\d{3}[.-]?\d{3}[.-]?\d{2}";
 }

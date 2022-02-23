@@ -1,5 +1,4 @@
 import 'package:client_register_app/presentation/widgets/buttons.dart';
-import 'package:client_register_app/presentation/widgets/register_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
@@ -34,7 +33,7 @@ class EditionDialog extends HookWidget {
             const SizedBox(
               height: 12,
             ),
-            const RegisterTextField(
+            /* const RegisterTextField(
               labelText: 'Matrícula',
               hintText: 'Matrícula',
               maxLength: 10,
@@ -48,7 +47,7 @@ class EditionDialog extends HookWidget {
               labelText: 'E-mail',
               hintText: 'E-mail',
               maxLength: 10,
-            ),
+            ), */
             const SizedBox(
               height: 12,
             ),

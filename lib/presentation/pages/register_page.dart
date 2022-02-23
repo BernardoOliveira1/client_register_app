@@ -1,12 +1,21 @@
+import 'package:client_register_app/application/register_controller.dart';
+import 'package:client_register_app/domain/core/value_objects.dart';
+import 'package:client_register_app/domain/i_repository.dart';
 import 'package:client_register_app/presentation/widgets/register_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:get/get.dart';
+import 'package:get_it/get_it.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends HookWidget {
   const RegisterPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
+    final _controller =
+        Get.put(RegisterController(GetIt.I.get<IClientRepository>()));
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -21,20 +30,82 @@ class RegisterPage extends StatelessWidget {
             const SizedBox(
               height: 40,
             ),
-            const RegisterTextField(
-              labelText: 'Matrícula',
-              hintText: 'Digite a Matrícula',
-              maxLength: 11,
+            Obx(
+              () => RegisterTextField(
+                labelText: 'Matrícula',
+                hintText: 'Digite a Matrícula',
+                maxLength: 5,
+                keyboardType: TextInputType.number,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(5),
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                ],
+                controller: _controller.registrationCodeTextEditingController,
+                onChanged: (value) => _controller.registrationCode.value =
+                    RegistrationCode.fromSafeString(value),
+                onFieldSubmitted: (_) {
+                  _controller.showRegistrationCodeValueFailure.value = true;
+                },
+                validator: (_) => _controller.registrationCode.value != null
+                    ? _controller.registrationCode.value!.value.fold(
+                        (f) => f.toString(),
+                        (_) => null,
+                      )
+                    : null,
+                autoValidate: _controller.showRegistrationCodeValueFailure.value
+                    ? AutovalidateMode.always
+                    : AutovalidateMode.disabled,
+              ),
             ),
-            const RegisterTextField(
-              labelText: 'CPF',
-              hintText: 'Digite o CPF',
-              maxLength: 11,
+            Obx(
+              () => RegisterTextField(
+                labelText: 'CPF',
+                hintText: 'Digite o CPF',
+                maxLength: 11,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(11),
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                ],
+                keyboardType: TextInputType.number,
+                controller: _controller.cpfTextEditingController,
+                onChanged: (value) =>
+                    _controller.cpf.value = CPF.fromSafeString(value),
+                onFieldSubmitted: (_) {
+                  _controller.showCPFValueFailure.value = true;
+                },
+                validator: (_) => _controller.cpf.value != null
+                    ? _controller.cpf.value!.value.fold(
+                        (f) => f.toString(),
+                        (_) => null,
+                      )
+                    : null,
+                autoValidate: _controller.showCPFValueFailure.value
+                    ? AutovalidateMode.always
+                    : AutovalidateMode.disabled,
+              ),
             ),
-            const RegisterTextField(
-              labelText: 'E-mail',
-              hintText: 'Digite o E-mail',
-              maxLength: 11,
+            Obx(
+              () => RegisterTextField(
+                labelText: 'E-mail',
+                hintText: 'Digite o E-mail',
+                maxLength: 50,
+                keyboardType: TextInputType.emailAddress,
+                controller: _controller.emailTextEditingController,
+                onChanged: (value) =>
+                    _controller.email.value = Email.fromSafeString(value),
+                onFieldSubmitted: (_) {
+                  _controller.showEmailValueFailure.value = true;
+                },
+                validator: (_) => _controller.email.value != null
+                    ? _controller.email.value!.value.fold(
+                        (f) => f.toString(),
+                        (_) => null,
+                      )
+                    : null,
+                autoValidate: _controller.showEmailValueFailure.value
+                    ? AutovalidateMode.always
+                    : AutovalidateMode.disabled,
+              ),
             ),
             Expanded(
               child: Align(
@@ -55,7 +126,10 @@ class RegisterPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () async {
+                    _controller.finishRegister();
+                    _controller.registrationCodeTextEditingController.clear();
+                  },
                   child: SizedBox(
                     height: mediaQuery.size.width * 0.1,
                     child: Center(
