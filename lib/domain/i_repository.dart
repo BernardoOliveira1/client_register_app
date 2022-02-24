@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart' as dartz;
 import 'core/failure.dart';
 
 abstract class IClientRepository {
-  Stream<dartz.Either<ClientFailure, Client>> watchAll();
+  Future<List<dartz.Either<ClientFailure, Client>>> getAll();
 
   Future<dartz.Either<ClientFailure, Client>> create(Client client);
 

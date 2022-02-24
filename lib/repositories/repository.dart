@@ -58,8 +58,29 @@ class ClientRepository implements IClientRepository {
   }
 
   @override
-  Stream<Either<ClientFailure, Client>> watchAll() {
-    // TODO: implement watchAll
-    throw UnimplementedError();
+  Future<List<Either<ClientFailure, Client>>> getAll() async {
+    final _clientsCollection = _firestore
+        .collection('clients')
+        .withConverter<Either<ClientFailure, Client>>(
+          fromFirestore: clientFromFirestore,
+          toFirestore: clientToFirestore,
+        );
+
+    final clients = await _clientsCollection.get();
+
+    return clients.docs
+        .map(
+          (doc) => doc.data().fold(
+            (l) {
+              print(l);
+              return left<ClientFailure, Client>(l);
+            },
+            (r) {
+              print(r);
+              return right<ClientFailure, Client>(r);
+            },
+          ),
+        )
+        .toList();
   }
 }
