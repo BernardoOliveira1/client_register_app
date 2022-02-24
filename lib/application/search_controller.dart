@@ -20,6 +20,10 @@ class SearchController extends GetxController with StateMixin {
   }
 
   void _getAllData() async {
-    clients.value = await _clientRepository.getAll();
+    final clientList = await _clientRepository.getAll();
+    clientList.fold(
+      (l) => null,
+      (r) => clients.value = r,
+    );
   }
 }

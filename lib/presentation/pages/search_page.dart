@@ -31,10 +31,14 @@ class SearchPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              SizedBox(
-                height: 49,
-                width: mediaQuery.size.width * (8 / 9),
-                child: const SearchField(),
+              Padding(
+                padding: EdgeInsets.fromLTRB(mediaQuery.size.width * (0.5 / 9),
+                    0, mediaQuery.size.width * (0.5 / 9), 0),
+                child: SizedBox(
+                  height: 50,
+                  width: mediaQuery.size.width * (8 / 9),
+                  child: const SearchField(),
+                ),
               ),
               _controller.clients.value != null
                   ? Obx(
@@ -142,8 +146,13 @@ class ClientDataTable extends StatelessWidget {
                 .map(
                   ((element) => DataRow(
                         onLongPress: () async {
-                          await Get.dialog(
-                            const EditionDialog(),
+                          element.fold(
+                            (l) => null,
+                            (r) async => await Get.dialog(
+                              EditionDialog(
+                                client: r,
+                              ),
+                            ),
                           );
                         },
                         cells: <DataCell>[
