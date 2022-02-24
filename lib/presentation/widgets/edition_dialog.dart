@@ -39,6 +39,7 @@ class EditionDialog extends HookWidget {
                   color: Colors.red,
                   onPressed: () {
                     _controller.deleteClient(client);
+                    Get.back();
                   },
                   text: 'Excluir',
                 ),

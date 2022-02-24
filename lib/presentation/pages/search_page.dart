@@ -22,33 +22,41 @@ class SearchPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Pesquisa & Edição'),
       ),
-      body: SafeArea(
-        child: Obx(
-          () => Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(mediaQuery.size.width * (0.5 / 9),
-                    0, mediaQuery.size.width * (0.5 / 9), 0),
-                child: SizedBox(
-                  height: 50,
-                  width: mediaQuery.size.width * (8 / 9),
-                  child: const SearchField(),
-                ),
-              ),
-              _controller.clients.value != null
-                  ? Obx(
-                      () => ClientDataTable(
-                        listOfClients: _controller.clients.value!,
+      body: Obx(
+        () => SafeArea(
+          child: _controller.clientList.value != null
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(
+                            mediaQuery.size.width * (0.5 / 9),
+                            0,
+                            mediaQuery.size.width * (0.5 / 9),
+                            0),
+                        child: SizedBox(
+                          height: 50,
+                          width: mediaQuery.size.width * (8 / 9),
+                          child: const SearchField(),
+                        ),
                       ),
-                    )
-                  : const CircularProgressIndicator(),
-            ],
-          ),
+                    ),
+                    Obx(
+                      () => ClientDataTable(
+                        listOfClients: _controller.clientList.value!,
+                      ),
+                    ),
+                  ],
+                )
+              : const Center(
+                  child: CircularProgressIndicator(),
+                ),
         ),
       ),
     );

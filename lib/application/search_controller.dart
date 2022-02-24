@@ -10,20 +10,31 @@ class SearchController extends GetxController with StateMixin {
   );
 
   final IClientRepository _clientRepository;
-
-  final clients = Rxn<List<Either<ClientFailure, Client>>>();
+  final _clientsFromRepository =
+      Rxn<Either<ClientFailure, List<Either<ClientFailure, Client>>>>();
+  final clientList = Rxn<List<Either<ClientFailure, Client>>>();
 
   @override
   void onInit() {
     super.onInit();
-    _getAllData();
-  }
-
-  void _getAllData() async {
-    final clientList = await _clientRepository.getAll();
-    clientList.fold(
-      (l) => null,
-      (r) => clients.value = r,
+    change(null, status: RxStatus.loading());
+    _clientsFromRepository.bindStream(_clientRepository.watchAll());
+    ever(
+      _clientsFromRepository,
+      (_) => change(
+        _clientsFromRepository.value,
+        status: _clientsFromRepository.value != null
+            ? _clientsFromRepository.value!.fold(
+                (l) => l == const ClientFailure.clientNotFound()
+                    ? RxStatus.empty()
+                    : RxStatus.error(l.toString()),
+                (clients) {
+                  clientList.value = clients;
+                  return RxStatus.success();
+                },
+              )
+            : RxStatus.error(const ClientFailure.unknownError().toString()),
+      ),
     );
   }
 }
