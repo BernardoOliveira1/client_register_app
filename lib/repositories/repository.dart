@@ -46,41 +46,100 @@ class ClientRepository implements IClientRepository {
   }
 
   @override
-  Future<Either<ClientFailure, Client>> delete(Client client) {
-    // TODO: implement delete
-    throw UnimplementedError();
-  }
+  Future<Either<ClientFailure, Client>> delete(Client client) async {
+    try {
+      final _clientDoc = _firestore
+          .collection('clients')
+          .doc(client.registrationCode.getOrCrash())
+          .withConverter<Either<ClientFailure, Client>>(
+            fromFirestore: clientFromFirestore,
+            toFirestore: clientToFirestore,
+          );
 
-  @override
-  Future<Either<ClientFailure, Client>> update(Client client) {
-    // TODO: implement update
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<List<Either<ClientFailure, Client>>> getAll() async {
-    final _clientsCollection = _firestore
-        .collection('clients')
-        .withConverter<Either<ClientFailure, Client>>(
-          fromFirestore: clientFromFirestore,
-          toFirestore: clientToFirestore,
+      await _clientDoc.delete();
+      return right(client);
+    } on TimeoutException {
+      return left(const ClientFailure.serverError());
+    } on FirebaseException catch (e) {
+      if (e.code == 'not-found') {
+        return left(const ClientFailure.clientNotFound());
+      } else if (e.code == 'permission-denied') {
+        return left(
+          const ClientFailure.permissionDenied(),
         );
+      } else {
+        return left(ClientFailure.unknownError(object: e));
+      }
+    } catch (e) {
+      return left(ClientFailure.unknownError(object: e));
+    }
+  }
 
-    final clients = await _clientsCollection.get();
+  @override
+  Future<Either<ClientFailure, Client>> update(Client client) async {
+    try {
+      final _clientDoc = _firestore
+          .collection('clients')
+          .doc(client.registrationCode.getOrCrash())
+          .withConverter<Either<ClientFailure, Client>>(
+            fromFirestore: clientFromFirestore,
+            toFirestore: clientToFirestore,
+          );
 
-    return clients.docs
-        .map(
-          (doc) => doc.data().fold(
-            (l) {
-              print(l);
-              return left<ClientFailure, Client>(l);
-            },
-            (r) {
-              print(r);
-              return right<ClientFailure, Client>(r);
-            },
-          ),
-        )
-        .toList();
+      await _clientDoc.set(right(client));
+      return right(client);
+    } on TimeoutException {
+      return left(const ClientFailure.serverError());
+    } on FirebaseException catch (e) {
+      if (e.code == 'not-found') {
+        return left(const ClientFailure.clientNotFound());
+      } else if (e.code == 'permission-denied') {
+        return left(
+          const ClientFailure.permissionDenied(),
+        );
+      } else {
+        return left(ClientFailure.unknownError(object: e));
+      }
+    } catch (e) {
+      return left(ClientFailure.unknownError(object: e));
+    }
+  }
+
+  @override
+  Future<Either<ClientFailure, List<Either<ClientFailure, Client>>>>
+      getAll() async {
+    try {
+      final _clientsCollection = _firestore
+          .collection('clients')
+          .withConverter<Either<ClientFailure, Client>>(
+            fromFirestore: clientFromFirestore,
+            toFirestore: clientToFirestore,
+          );
+
+      final clients = await _clientsCollection.get();
+
+      return right(clients.docs
+          .map(
+            (doc) => doc.data().fold(
+                  (l) => left<ClientFailure, Client>(l),
+                  (r) => right<ClientFailure, Client>(r),
+                ),
+          )
+          .toList());
+    } on TimeoutException {
+      return left(const ClientFailure.serverError());
+    } on FirebaseException catch (e) {
+      if (e.code == 'not-found') {
+        return left(const ClientFailure.clientNotFound());
+      } else if (e.code == 'permission-denied') {
+        return left(
+          const ClientFailure.permissionDenied(),
+        );
+      } else {
+        return left(ClientFailure.unknownError(object: e));
+      }
+    } catch (e) {
+      return left(ClientFailure.unknownError(object: e));
+    }
   }
 }
