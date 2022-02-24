@@ -1,7 +1,13 @@
+import 'package:client_register_app/application/search_controller.dart';
+import 'package:client_register_app/domain/client.dart';
+import 'package:client_register_app/domain/core/failure.dart';
+import 'package:client_register_app/domain/i_repository.dart';
 import 'package:client_register_app/presentation/widgets/edition_dialog.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_it/get_it.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -9,26 +15,36 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
+    final _controller =
+        Get.put(SearchController(GetIt.I.get<IClientRepository>()));
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: const Text('Pesquisa & Edição'),
       ),
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            SizedBox(
-              height: 50,
-              width: mediaQuery.size.width * (8 / 9),
-              child: const SearchField(),
-            ),
-            ClientDataTable(),
-          ],
+        child: Obx(
+          () => Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                height: 49,
+                width: mediaQuery.size.width * (8 / 9),
+                child: const SearchField(),
+              ),
+              _controller.clients.value != null
+                  ? Obx(
+                      () => ClientDataTable(
+                        listOfClients: _controller.clients.value!,
+                      ),
+                    )
+                  : const CircularProgressIndicator(),
+            ],
+          ),
         ),
       ),
     );
@@ -87,77 +103,12 @@ class SearchField extends StatelessWidget {
 }
 
 class ClientDataTable extends StatelessWidget {
-  ClientDataTable({
+  const ClientDataTable({
     Key? key,
+    required this.listOfClients,
   }) : super(key: key);
 
-//TODO: remove hard code
-  final List<Map<String, String>> listOfColumns = [
-    {"Matrícula": "2222", "CPF": "10000000000", "E-mail": "example1@gmail.com"},
-    {"Matrícula": "3333", "CPF": "20000000000", "E-mail": "example2@gmail.com"},
-    {"Matrícula": "4444", "CPF": "30000000000", "E-mail": "example3@gmail.com"},
-    {"Matrícula": "2222", "CPF": "10000000000", "E-mail": "example1@gmail.com"},
-    {"Matrícula": "3333", "CPF": "20000000000", "E-mail": "example2@gmail.com"},
-    {"Matrícula": "4444", "CPF": "30000000000", "E-mail": "example3@gmail.com"},
-    {"Matrícula": "2222", "CPF": "10000000000", "E-mail": "example1@gmail.com"},
-    {"Matrícula": "3333", "CPF": "20000000000", "E-mail": "example2@gmail.com"},
-    {"Matrícula": "4444", "CPF": "30000000000", "E-mail": "example3@gmail.com"},
-    {"Matrícula": "2222", "CPF": "10000000000", "E-mail": "example1@gmail.com"},
-    {"Matrícula": "3333", "CPF": "20000000000", "E-mail": "example2@gmail.com"},
-    {"Matrícula": "4444", "CPF": "30000000000", "E-mail": "example3@gmail.com"},
-    {"Matrícula": "2222", "CPF": "10000000000", "E-mail": "example1@gmail.com"},
-    {"Matrícula": "3333", "CPF": "20000000000", "E-mail": "example2@gmail.com"},
-    {"Matrícula": "4444", "CPF": "30000000000", "E-mail": "example3@gmail.com"},
-    {"Matrícula": "2222", "CPF": "10000000000", "E-mail": "example1@gmail.com"},
-    {"Matrícula": "3333", "CPF": "20000000000", "E-mail": "example2@gmail.com"},
-    {"Matrícula": "4444", "CPF": "30000000000", "E-mail": "example3@gmail.com"},
-    {"Matrícula": "2222", "CPF": "10000000000", "E-mail": "example1@gmail.com"},
-    {"Matrícula": "3333", "CPF": "20000000000", "E-mail": "example2@gmail.com"},
-    {"Matrícula": "4444", "CPF": "30000000000", "E-mail": "example3@gmail.com"},
-    {"Matrícula": "2222", "CPF": "10000000000", "E-mail": "example1@gmail.com"},
-    {"Matrícula": "3333", "CPF": "20000000000", "E-mail": "example2@gmail.com"},
-    {"Matrícula": "4444", "CPF": "30000000000", "E-mail": "example3@gmail.com"},
-    {"Matrícula": "2222", "CPF": "10000000000", "E-mail": "example1@gmail.com"},
-    {"Matrícula": "3333", "CPF": "20000000000", "E-mail": "example2@gmail.com"},
-    {"Matrícula": "4444", "CPF": "30000000000", "E-mail": "example3@gmail.com"},
-    {"Matrícula": "2222", "CPF": "10000000000", "E-mail": "example1@gmail.com"},
-    {"Matrícula": "3333", "CPF": "20000000000", "E-mail": "example2@gmail.com"},
-    {"Matrícula": "4444", "CPF": "30000000000", "E-mail": "example3@gmail.com"},
-    {"Matrícula": "2222", "CPF": "10000000000", "E-mail": "example1@gmail.com"},
-    {"Matrícula": "3333", "CPF": "20000000000", "E-mail": "example2@gmail.com"},
-    {"Matrícula": "4444", "CPF": "30000000000", "E-mail": "example3@gmail.com"},
-    {"Matrícula": "2222", "CPF": "10000000000", "E-mail": "example1@gmail.com"},
-    {"Matrícula": "3333", "CPF": "20000000000", "E-mail": "example2@gmail.com"},
-    {"Matrícula": "4444", "CPF": "30000000000", "E-mail": "example3@gmail.com"},
-    {"Matrícula": "2222", "CPF": "10000000000", "E-mail": "example1@gmail.com"},
-    {"Matrícula": "3333", "CPF": "20000000000", "E-mail": "example2@gmail.com"},
-    {"Matrícula": "4444", "CPF": "30000000000", "E-mail": "example3@gmail.com"},
-    {"Matrícula": "2222", "CPF": "10000000000", "E-mail": "example1@gmail.com"},
-    {"Matrícula": "3333", "CPF": "20000000000", "E-mail": "example2@gmail.com"},
-    {"Matrícula": "4444", "CPF": "30000000000", "E-mail": "example3@gmail.com"},
-    {"Matrícula": "2222", "CPF": "10000000000", "E-mail": "example1@gmail.com"},
-    {"Matrícula": "3333", "CPF": "20000000000", "E-mail": "example2@gmail.com"},
-    {"Matrícula": "4444", "CPF": "30000000000", "E-mail": "example3@gmail.com"},
-    {"Matrícula": "2222", "CPF": "10000000000", "E-mail": "example1@gmail.com"},
-    {"Matrícula": "3333", "CPF": "20000000000", "E-mail": "example2@gmail.com"},
-    {"Matrícula": "4444", "CPF": "30000000000", "E-mail": "example3@gmail.com"},
-    {"Matrícula": "2222", "CPF": "10000000000", "E-mail": "example1@gmail.com"},
-    {"Matrícula": "3333", "CPF": "20000000000", "E-mail": "example2@gmail.com"},
-    {"Matrícula": "4444", "CPF": "30000000000", "E-mail": "example3@gmail.com"},
-    {"Matrícula": "2222", "CPF": "10000000000", "E-mail": "example1@gmail.com"},
-    {"Matrícula": "3333", "CPF": "20000000000", "E-mail": "example2@gmail.com"},
-    {"Matrícula": "4444", "CPF": "30000000000", "E-mail": "example3@gmail.com"},
-    {"Matrícula": "2222", "CPF": "10000000000", "E-mail": "example1@gmail.com"},
-    {"Matrícula": "3333", "CPF": "20000000000", "E-mail": "example2@gmail.com"},
-    {"Matrícula": "4444", "CPF": "30000000000", "E-mail": "example3@gmail.com"},
-    {"Matrícula": "2222", "CPF": "10000000000", "E-mail": "example1@gmail.com"},
-    {"Matrícula": "3333", "CPF": "20000000000", "E-mail": "example2@gmail.com"},
-    {"Matrícula": "4444", "CPF": "30000000000", "E-mail": "example3@gmail.com"},
-    {"Matrícula": "2222", "CPF": "10000000000", "E-mail": "example1@gmail.com"},
-    {"Matrícula": "3333", "CPF": "20000000000", "E-mail": "example2@gmail.com"},
-    {"Matrícula": "4444", "CPF": "30000000000", "E-mail": "example3@gmail.com"},
-  ];
-
+  final List<Either<ClientFailure<dynamic>, Client>> listOfClients;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -187,7 +138,7 @@ class ClientDataTable extends StatelessWidget {
                 ),
               ),
             ],
-            rows: listOfColumns
+            rows: listOfClients
                 .map(
                   ((element) => DataRow(
                         onLongPress: () async {
@@ -197,19 +148,22 @@ class ClientDataTable extends StatelessWidget {
                         },
                         cells: <DataCell>[
                           DataCell(Text(
-                            element["Matrícula"]!,
+                            element.fold((l) => 'erro',
+                                (r) => r.registrationCode.getOrCrash()),
                             style: const TextStyle(
                               color: Colors.white,
                             ),
                           )),
                           DataCell(Text(
-                            element["CPF"]!,
+                            element.fold(
+                                (l) => 'erro', (r) => r.cpf.getOrCrash()),
                             style: const TextStyle(
                               color: Colors.white,
                             ),
                           )),
                           DataCell(Text(
-                            element["E-mail"]!,
+                            element.fold(
+                                (l) => 'erro', (r) => r.email.getOrCrash()),
                             style: const TextStyle(
                               color: Colors.white,
                             ),
