@@ -46,11 +46,10 @@ class EditionDialog extends HookWidget {
               ],
             ),
             const SizedBox(
-              height: 12,
+              height: 4,
             ),
             Obx(
               () => RegisterTextField(
-                initialValue: client.registrationCode.getOrCrash(),
                 labelText: 'Matrícula',
                 hintText: 'Digite a Matrícula',
                 maxLength: 5,
@@ -66,9 +65,9 @@ class EditionDialog extends HookWidget {
                 onFieldSubmitted: (_) {
                   _controller.showRegistrationCodeValueFailure.value = true;
                 },
-                validator: (_) => _controller.registrationCode.value != null
+                validator: _controller.registrationCode.value != null
                     ? _controller.registrationCode.value!.value.fold(
-                        (f) => f.toString(),
+                        (f) => 'Deve conter 5 dígitos',
                         (_) => null,
                       )
                     : null,
@@ -79,7 +78,6 @@ class EditionDialog extends HookWidget {
             ),
             Obx(
               () => RegisterTextField(
-                initialValue: client.cpf.getOrCrash(),
                 labelText: 'CPF',
                 hintText: 'Digite o CPF',
                 maxLength: 11,
@@ -94,9 +92,9 @@ class EditionDialog extends HookWidget {
                 onFieldSubmitted: (_) {
                   _controller.showCPFValueFailure.value = true;
                 },
-                validator: (_) => _controller.cpf.value != null
+                validator: _controller.cpf.value != null
                     ? _controller.cpf.value!.value.fold(
-                        (f) => f.toString(),
+                        (f) => 'Deve conter 11 dígitos',
                         (_) => null,
                       )
                     : null,
@@ -107,7 +105,6 @@ class EditionDialog extends HookWidget {
             ),
             Obx(
               () => RegisterTextField(
-                initialValue: client.email.getOrCrash(),
                 labelText: 'E-mail',
                 hintText: 'Digite o E-mail',
                 maxLength: 50,
@@ -118,9 +115,10 @@ class EditionDialog extends HookWidget {
                 onFieldSubmitted: (_) {
                   _controller.showEmailValueFailure.value = true;
                 },
-                validator: (_) => _controller.email.value != null
+                validator: _controller.email.value != null
                     ? _controller.email.value!.value.fold(
-                        (f) => f.toString(),
+                        (f) =>
+                            'Deve conter um email válido.\nEx: josesilva@gmail.com',
                         (_) => null,
                       )
                     : null,
@@ -130,7 +128,7 @@ class EditionDialog extends HookWidget {
               ),
             ),
             const SizedBox(
-              height: 12,
+              height: 4,
             ),
             SizedBox(
               height: kMinInteractiveDimension,

@@ -13,7 +13,6 @@ class RegisterTextField extends HookWidget {
       required this.onFieldSubmitted,
       required this.autoValidate,
       required this.keyboardType,
-      required this.initialValue,
       this.inputFormatters,
       Key? key})
       : super(key: key);
@@ -21,9 +20,8 @@ class RegisterTextField extends HookWidget {
   final String labelText;
   final String hintText;
   final int maxLength;
-  final String initialValue;
   final void Function(String)? onChanged;
-  final String? Function(String?)? validator;
+  final String? validator;
   final void Function(String)? onFieldSubmitted;
   final TextEditingController controller;
   final AutovalidateMode autoValidate;
@@ -33,13 +31,11 @@ class RegisterTextField extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: TextFormField(
-        initialValue: initialValue,
-        controller: null,
+      padding: const EdgeInsets.all(4),
+      child: TextField(
+        controller: controller,
         focusNode: null,
         inputFormatters: inputFormatters,
-        autovalidateMode: autoValidate,
         keyboardType: keyboardType,
         textCapitalization: TextCapitalization.sentences,
         style: const TextStyle(
@@ -68,16 +64,29 @@ class RegisterTextField extends HookWidget {
           hintStyle: const TextStyle(
             color: Colors.blueGrey,
           ),
+          errorText: validator,
+          errorStyle: const TextStyle(
+            color: Colors.red,
+          ),
+          errorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.red,
+              width: 1,
+            ),
+          ),
+          focusedErrorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.red,
+              width: 1,
+            ),
+          ),
         ),
         maxLength: maxLength,
         onChanged: (value) {
           onChanged!(value);
         },
-        onFieldSubmitted: (_) {
+        onSubmitted: (_) {
           onFieldSubmitted;
-        },
-        validator: (_) {
-          validator!(_);
         },
       ),
     );

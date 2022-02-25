@@ -23,138 +23,140 @@ class RegisterPage extends HookWidget {
       ),
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            const SizedBox(
-              height: 40,
-            ),
-            Obx(
-              () => RegisterTextField(
-                initialValue: '',
-                labelText: 'Matrícula',
-                hintText: 'Digite a Matrícula',
-                maxLength: 5,
-                keyboardType: TextInputType.number,
-                inputFormatters: [
-                  LengthLimitingTextInputFormatter(5),
-                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                ],
-                controller: _controller.registrationCodeTextEditingController,
-                onChanged: (value) => _controller.registrationCode.value =
-                    RegistrationCode.fromSafeString(value),
-                onFieldSubmitted: (_) {
-                  _controller.showRegistrationCodeValueFailure.value = true;
-                },
-                validator: (_) => _controller.registrationCode.value != null
-                    ? _controller.registrationCode.value!.value.fold(
-                        (f) => f.toString(),
-                        (_) => null,
-                      )
-                    : null,
-                autoValidate: _controller.showRegistrationCodeValueFailure.value
-                    ? AutovalidateMode.always
-                    : AutovalidateMode.disabled,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              const SizedBox(
+                height: 40,
               ),
-            ),
-            Obx(
-              () => RegisterTextField(
-                initialValue: '',
-                labelText: 'CPF',
-                hintText: 'Digite o CPF',
-                maxLength: 11,
-                inputFormatters: [
-                  LengthLimitingTextInputFormatter(11),
-                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                ],
-                keyboardType: TextInputType.number,
-                controller: _controller.cpfTextEditingController,
-                onChanged: (value) =>
-                    _controller.cpf.value = CPF.fromSafeString(value),
-                onFieldSubmitted: (_) {
-                  _controller.showCPFValueFailure.value = true;
-                },
-                validator: (_) => _controller.cpf.value != null
-                    ? _controller.cpf.value!.value.fold(
-                        (f) => f.toString(),
-                        (_) => null,
-                      )
-                    : null,
-                autoValidate: _controller.showCPFValueFailure.value
-                    ? AutovalidateMode.always
-                    : AutovalidateMode.disabled,
+              Obx(
+                () => RegisterTextField(
+                  labelText: 'Matrícula',
+                  hintText: 'Digite a Matrícula',
+                  maxLength: 5,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(5),
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                  ],
+                  controller:
+                      _controller.registrationCodeTextEditingController.value,
+                  onChanged: (value) => _controller.registrationCode.value =
+                      RegistrationCode.fromSafeString(value),
+                  onFieldSubmitted: (_) {
+                    _controller.showRegistrationCodeValueFailure.value = true;
+                  },
+                  validator: _controller.registrationCode.value != null
+                      ? _controller.registrationCode.value!.value.fold(
+                          (f) => 'Deve conter 5 dígitos',
+                          (_) => null,
+                        )
+                      : null,
+                  autoValidate:
+                      _controller.showRegistrationCodeValueFailure.value
+                          ? AutovalidateMode.always
+                          : AutovalidateMode.disabled,
+                ),
               ),
-            ),
-            Obx(
-              () => RegisterTextField(
-                initialValue: '',
-                labelText: 'E-mail',
-                hintText: 'Digite o E-mail',
-                maxLength: 50,
-                keyboardType: TextInputType.emailAddress,
-                controller: _controller.emailTextEditingController,
-                onChanged: (value) =>
-                    _controller.email.value = Email.fromSafeString(value),
-                onFieldSubmitted: (_) {
-                  _controller.showEmailValueFailure.value = true;
-                },
-                validator: (_) => _controller.email.value != null
-                    ? _controller.email.value!.value.fold(
-                        (f) => f.toString(),
-                        (_) => null,
-                      )
-                    : null,
-                autoValidate: _controller.showEmailValueFailure.value
-                    ? AutovalidateMode.always
-                    : AutovalidateMode.disabled,
+              Obx(
+                () => RegisterTextField(
+                  labelText: 'CPF',
+                  hintText: 'Digite o CPF',
+                  maxLength: 11,
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(11),
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                  ],
+                  keyboardType: TextInputType.number,
+                  controller: _controller.cpfTextEditingController.value,
+                  onChanged: (value) =>
+                      _controller.cpf.value = CPF.fromSafeString(value),
+                  onFieldSubmitted: (_) {
+                    _controller.showCPFValueFailure.value = true;
+                  },
+                  validator: _controller.cpf.value != null
+                      ? _controller.cpf.value!.value.fold(
+                          (f) => 'Deve conter 11 dígitos',
+                          (_) => null,
+                        )
+                      : null,
+                  autoValidate: _controller.showCPFValueFailure.value
+                      ? AutovalidateMode.always
+                      : AutovalidateMode.disabled,
+                ),
               ),
-            ),
-            Expanded(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                    side: MaterialStateProperty.all<BorderSide>(
-                      BorderSide(
-                        width: mediaQuery.size.width * (1.2 / 360),
-                        color: Colors.blue,
+              Obx(
+                () => RegisterTextField(
+                  labelText: 'E-mail',
+                  hintText: 'Digite o E-mail',
+                  maxLength: 50,
+                  keyboardType: TextInputType.emailAddress,
+                  controller: _controller.emailTextEditingController.value,
+                  onChanged: (value) =>
+                      _controller.email.value = Email.fromSafeString(value),
+                  onFieldSubmitted: (_) {
+                    _controller.showEmailValueFailure.value = true;
+                  },
+                  validator: _controller.email.value != null
+                      ? _controller.email.value!.value.fold(
+                          (f) =>
+                              'Deve conter um email válido. Ex: josesilva@gmail.com',
+                          (_) => null,
+                        )
+                      : null,
+                  autoValidate: _controller.showEmailValueFailure.value
+                      ? AutovalidateMode.always
+                      : AutovalidateMode.disabled,
+                ),
+              ),
+              Expanded(
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      side: MaterialStateProperty.all<BorderSide>(
+                        BorderSide(
+                          width: mediaQuery.size.width * (1.2 / 360),
+                          color: Colors.blue,
+                        ),
                       ),
-                    ),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(mediaQuery.size.width * (9 / 360)),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(mediaQuery.size.width * (9 / 360)),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  onPressed: () async {
-                    _controller.finishRegister();
-                    _controller.registrationCodeTextEditingController.clear();
-                  },
-                  child: SizedBox(
-                    height: mediaQuery.size.width * 0.1,
-                    child: Center(
-                      child: Text(
-                        'Cadastrar',
-                        style: TextStyle(
-                          fontSize: mediaQuery.size.width * (18 / 360),
-                          fontWeight: FontWeight.w600,
-                          fontStyle: FontStyle.normal,
+                    onPressed: () async {
+                      _controller.finishRegister();
+                    },
+                    child: SizedBox(
+                      height: mediaQuery.size.width * 0.1,
+                      child: Center(
+                        child: Text(
+                          'Cadastrar',
+                          style: TextStyle(
+                            fontSize: mediaQuery.size.width * (18 / 360),
+                            fontWeight: FontWeight.w600,
+                            fontStyle: FontStyle.normal,
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-            const Flexible(
-              child: SizedBox(
-                height: 20,
+              const Flexible(
+                child: SizedBox(
+                  height: 20,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -15,9 +15,9 @@ class RegisterController extends GetxController {
   final cpf = Rxn<CPF>();
   final email = Rxn<Email>();
   final registrationCode = Rxn<RegistrationCode>();
-  final cpfTextEditingController = TextEditingController();
-  final emailTextEditingController = TextEditingController();
-  final registrationCodeTextEditingController = TextEditingController();
+  final cpfTextEditingController = Rx(TextEditingController());
+  final emailTextEditingController = Rx(TextEditingController());
+  final registrationCodeTextEditingController = Rx(TextEditingController());
   final showCPFValueFailure = RxBool(false);
   final showEmailValueFailure = RxBool(false);
   final showRegistrationCodeValueFailure = RxBool(false);
@@ -39,9 +39,9 @@ class RegisterController extends GetxController {
     cpf.value = null;
     email.value = null;
     registrationCode.value = null;
-    cpfTextEditingController.clear();
-    emailTextEditingController.clear();
-    registrationCodeTextEditingController.clear();
+    cpfTextEditingController.value.clear();
+    emailTextEditingController.value.clear();
+    registrationCodeTextEditingController.value.clear();
     showMessage(Get.context!,
         title: 'Operação Bem Sucedida',
         message: 'Cliente adicionado ao banco de dados',

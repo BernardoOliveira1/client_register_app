@@ -10,8 +10,9 @@ class HomePage extends StatelessWidget {
     final mediaQuery = MediaQuery.of(context);
     return Scaffold(
       backgroundColor: Colors.black,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Center(child: Text('Home')),
       ),
       body: SafeArea(
         child: Padding(
