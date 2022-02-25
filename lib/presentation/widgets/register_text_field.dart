@@ -13,6 +13,7 @@ class RegisterTextField extends HookWidget {
       required this.onFieldSubmitted,
       required this.autoValidate,
       required this.keyboardType,
+      required this.initialValue,
       this.inputFormatters,
       Key? key})
       : super(key: key);
@@ -20,6 +21,7 @@ class RegisterTextField extends HookWidget {
   final String labelText;
   final String hintText;
   final int maxLength;
+  final String initialValue;
   final void Function(String)? onChanged;
   final String? Function(String?)? validator;
   final void Function(String)? onFieldSubmitted;
@@ -33,6 +35,7 @@ class RegisterTextField extends HookWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
+        initialValue: initialValue,
         controller: null,
         focusNode: null,
         inputFormatters: inputFormatters,

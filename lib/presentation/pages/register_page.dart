@@ -32,6 +32,7 @@ class RegisterPage extends HookWidget {
             ),
             Obx(
               () => RegisterTextField(
+                initialValue: '',
                 labelText: 'Matrícula',
                 hintText: 'Digite a Matrícula',
                 maxLength: 5,
@@ -59,6 +60,7 @@ class RegisterPage extends HookWidget {
             ),
             Obx(
               () => RegisterTextField(
+                initialValue: '',
                 labelText: 'CPF',
                 hintText: 'Digite o CPF',
                 maxLength: 11,
@@ -86,6 +88,7 @@ class RegisterPage extends HookWidget {
             ),
             Obx(
               () => RegisterTextField(
+                initialValue: '',
                 labelText: 'E-mail',
                 hintText: 'Digite o E-mail',
                 maxLength: 50,

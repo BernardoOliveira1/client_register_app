@@ -50,6 +50,7 @@ class EditionDialog extends HookWidget {
             ),
             Obx(
               () => RegisterTextField(
+                initialValue: client.registrationCode.getOrCrash(),
                 labelText: 'Matrícula',
                 hintText: 'Digite a Matrícula',
                 maxLength: 5,
@@ -78,6 +79,7 @@ class EditionDialog extends HookWidget {
             ),
             Obx(
               () => RegisterTextField(
+                initialValue: client.cpf.getOrCrash(),
                 labelText: 'CPF',
                 hintText: 'Digite o CPF',
                 maxLength: 11,
@@ -105,6 +107,7 @@ class EditionDialog extends HookWidget {
             ),
             Obx(
               () => RegisterTextField(
+                initialValue: client.email.getOrCrash(),
                 labelText: 'E-mail',
                 hintText: 'Digite o E-mail',
                 maxLength: 50,
@@ -137,7 +140,10 @@ class EditionDialog extends HookWidget {
                     child: SecondaryButton(
                       mediaQuery: _mediaQuery,
                       color: Colors.blue,
-                      onPressed: () {},
+                      onPressed: () {
+                        _controller.updateClient();
+                        Get.back();
+                      },
                       text: 'Atualizar',
                     ),
                   ),
