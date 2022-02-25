@@ -21,8 +21,8 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 40,
+              SizedBox(
+                height: mediaQuery.size.width * 0.06,
               ),
               InkWell(
                 onTap: () => Navigator.of(context).push(
@@ -37,8 +37,8 @@ class HomePage extends StatelessWidget {
                       'Tabela contendo número de matrícula, CPF\ne e-mail.\n\nPressione e segure em qualquer linha para \neditá-la ou excluí-la.',
                 ),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: mediaQuery.size.width * 0.06,
               ),
               InkWell(
                 onTap: () => Navigator.of(context).push(
@@ -85,20 +85,22 @@ class NavigationCard extends StatelessWidget {
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 30.0, 0, 20),
+                  padding: EdgeInsets.fromLTRB(mediaQuery.size.width * 0.06,
+                      30.0, 0, mediaQuery.size.width * 0.06),
                   child: Text(
                     title,
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: mediaQuery.size.width * 0.06,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),
                 const Expanded(child: SizedBox()),
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
-                  child: Icon(
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                      0, 0, mediaQuery.size.width * 0.06, 0),
+                  child: const Icon(
                     Icons.arrow_forward,
                     size: 50,
                     color: Colors.white,
@@ -109,7 +111,7 @@ class NavigationCard extends StatelessWidget {
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: EdgeInsets.all(mediaQuery.size.width * 0.06),
                   child: Text(
                     text,
                     style: const TextStyle(
