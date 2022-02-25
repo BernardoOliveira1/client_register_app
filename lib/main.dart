@@ -19,7 +19,9 @@ class RegisterApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Client Register App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          primary: const Color(0xFF063970),
+        ),
       ),
       home: const HomePage(),
     );

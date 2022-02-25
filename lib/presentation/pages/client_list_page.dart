@@ -4,7 +4,6 @@ import 'package:client_register_app/domain/core/failure.dart';
 import 'package:client_register_app/domain/i_repository.dart';
 import 'package:client_register_app/presentation/widgets/edition_dialog.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
@@ -20,7 +19,7 @@ class ClientListPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: const Text('Pesquisa & Edição'),
+        title: const Center(child: Text('Análise & Edição')),
       ),
       body: Obx(
         () => SafeArea(
@@ -29,8 +28,8 @@ class ClientListPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: mediaQuery.size.width * 0.02,
                     ),
                     Obx(
                       () => ClientDataTable(
@@ -61,68 +60,85 @@ class ClientDataTable extends StatelessWidget {
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: SingleChildScrollView(
-          child: DataTable(
-            columns: const [
-              DataColumn(
-                label: Text(
-                  'Matrícula',
-                  style: TextStyle(
-                    color: Colors.white,
+          child: Theme(
+            data:
+                Theme.of(context).copyWith(dividerColor: Colors.blue.shade900),
+            child: DataTable(
+              dividerThickness: 1,
+              columns: [
+                DataColumn(
+                  label: Text(
+                    'Matrícula',
+                    style: TextStyle(
+                      color: Colors.blue.shade800,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
-              ),
-              DataColumn(
-                label: Text(
-                  'CPF',
-                  style: TextStyle(color: Colors.white),
+                DataColumn(
+                  label: Text(
+                    'CPF',
+                    style: TextStyle(
+                      color: Colors.blue.shade800,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ),
-              ),
-              DataColumn(
-                label: Text(
-                  'E-mail',
-                  style: TextStyle(color: Colors.white),
+                DataColumn(
+                  label: Center(
+                    child: Text(
+                      'E-mail',
+                      style: TextStyle(
+                        color: Colors.blue.shade800,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ],
-            rows: listOfClients
-                .map(
-                  ((element) => DataRow(
-                        onLongPress: () async {
-                          element.fold(
-                            (l) => null,
-                            (r) async => await Get.dialog(
-                              EditionDialog(
-                                client: r,
+              ],
+              rows: listOfClients
+                  .map(
+                    ((element) => DataRow(
+                          onLongPress: () async {
+                            element.fold(
+                              (l) => null,
+                              (r) async => await Get.dialog(
+                                EditionDialog(
+                                  client: r,
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                        cells: <DataCell>[
-                          DataCell(Text(
-                            element.fold((l) => 'erro',
-                                (r) => r.registrationCode.getOrCrash()),
-                            style: const TextStyle(
-                              color: Colors.white,
-                            ),
-                          )),
-                          DataCell(Text(
-                            element.fold(
-                                (l) => 'erro', (r) => r.cpf.getOrCrash()),
-                            style: const TextStyle(
-                              color: Colors.white,
-                            ),
-                          )),
-                          DataCell(Text(
-                            element.fold(
-                                (l) => 'erro', (r) => r.email.getOrCrash()),
-                            style: const TextStyle(
-                              color: Colors.white,
-                            ),
-                          )),
-                        ],
-                      )),
-                )
-                .toList(),
+                            );
+                          },
+                          cells: <DataCell>[
+                            DataCell(Text(
+                              element.fold((l) => 'erro',
+                                  (r) => r.registrationCode.getOrCrash()),
+                              style: const TextStyle(
+                                color: Colors.white,
+                              ),
+                            )),
+                            DataCell(Text(
+                              element.fold(
+                                  (l) => 'erro', (r) => r.cpf.getOrCrash()),
+                              style: const TextStyle(
+                                color: Colors.white,
+                              ),
+                            )),
+                            DataCell(Text(
+                              element.fold(
+                                  (l) => 'erro', (r) => r.email.getOrCrash()),
+                              style: const TextStyle(
+                                color: Colors.white,
+                              ),
+                            )),
+                          ],
+                        )),
+                  )
+                  .toList(),
+            ),
           ),
         ),
       ),
