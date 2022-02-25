@@ -4,8 +4,8 @@ import 'package:client_register_app/domain/i_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 
-class SearchController extends GetxController with StateMixin {
-  SearchController(
+class ClientListController extends GetxController with StateMixin {
+  ClientListController(
     this._clientRepository,
   );
 

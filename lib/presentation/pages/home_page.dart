@@ -1,5 +1,5 @@
 import 'package:client_register_app/presentation/pages/register_page.dart';
-import 'package:client_register_app/presentation/pages/search_page.dart';
+import 'package:client_register_app/presentation/pages/client_list_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -27,14 +27,14 @@ class HomePage extends StatelessWidget {
               InkWell(
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const SearchPage(),
+                    builder: (context) => const ClientListPage(),
                   ),
                 ),
                 child: NavigationCard(
                   mediaQuery: mediaQuery,
-                  title: 'PESQUISAR OU EDITAR',
+                  title: 'ANÁLISE E EDIÇÃO',
                   text:
-                      'Pesquise utilizando número de matrícula, CPF\nou e-mail.\n\nPressione e segure em qualquer linha para \neditá-la ou excluí-la.',
+                      'Tabela contendo número de matrícula, CPF\ne e-mail.\n\nPressione e segure em qualquer linha para \neditá-la ou excluí-la.',
                 ),
               ),
               const SizedBox(
@@ -48,7 +48,7 @@ class HomePage extends StatelessWidget {
                 ),
                 child: NavigationCard(
                   mediaQuery: mediaQuery,
-                  title: 'CADASTRAR',
+                  title: 'CADASTRO',
                   text:
                       'Cadastre um novo usuário utilizando número \nde matrícula, CPF e e-mail.',
                 ),
